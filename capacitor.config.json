@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "bloodbank",
+	"webDir": "dist",
+	"bundledWebRuntime": false
+}
