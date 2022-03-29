@@ -14,7 +14,7 @@ http://ionicframework.com/docs/theming/ */
   /** secondary **/
   --ion-color-secondary: #3dc2ff;
   --ion-color-secondary-rgb: 61, 194, 255;
-  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast: #f0cccc;
   --ion-color-secondary-contrast-rgb: 255, 255, 255;
   --ion-color-secondary-shade: #36abe0;
   --ion-color-secondary-tint: #50c8ff;
@@ -33,7 +33,7 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-success-contrast: #ffffff;
   --ion-color-success-contrast-rgb: 255, 255, 255;
   --ion-color-success-shade: #28ba62;
-  --ion-color-success-tint: #42d77d;
+  --ion-color-success-tint: #85ffb6;
 
   /** warning **/
   --ion-color-warning: #ffc409;
@@ -49,7 +49,7 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-danger-contrast: #ffffff;
   --ion-color-danger-contrast-rgb: 255, 255, 255;
   --ion-color-danger-shade: #cf3c4f;
-  --ion-color-danger-tint: #ed576b;
+  --ion-color-danger-tint: #f17e8e;
 
   /** dark **/
   --ion-color-dark: #222428;

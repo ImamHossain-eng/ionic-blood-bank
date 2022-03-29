@@ -4,8 +4,9 @@
       <ion-menu content-id="main-content" type="overlay">
         <ion-content>
           <ion-list id="inbox-list">
-            <ion-list-header>Inbox</ion-list-header>
-            <ion-note>hi@ionicframework.com</ion-note>
+            <ion-list-header>HUB Blood Bank</ion-list-header>
+            <ion-note>Developed by Imam</ion-note>
+            <ion-note>imam@hamdarduniversity.edu.bd</ion-note>
   
             <ion-menu-toggle auto-hide="false" v-for="(p, i) in appPages" :key="i">
               <ion-item @click="selectedIndex = i" router-direction="root" :router-link="p.url" lines="none" detail="false" class="hydrated" :class="{ selected: selectedIndex === i }">
@@ -30,11 +31,11 @@
   </ion-app>
 </template>
 
-<script lang="ts">
+<script>
 import { IonApp, IonContent, IonIcon, IonItem, IonLabel, IonList, IonListHeader, IonMenu, IonMenuToggle, IonNote, IonRouterOutlet, IonSplitPane } from '@ionic/vue';
 import { defineComponent, ref } from 'vue';
 import { useRoute } from 'vue-router';
-import { archiveOutline, archiveSharp, bookmarkOutline, bookmarkSharp, heartOutline, heartSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
+import { archiveOutline, archiveSharp, bookmarkOutline, bookmarkSharp, heartOutline, heartSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, trashOutline, trashSharp, warningOutline, warningSharp, homeOutline, searchOutline, logInOutline, listOutline } from 'ionicons/icons';
 
 export default defineComponent({
   name: 'App',
@@ -56,10 +57,28 @@ export default defineComponent({
     const selectedIndex = ref(0);
     const appPages = [
       {
-        title: 'Inbox',
-        url: '/folder/Inbox',
-        iosIcon: mailOutline,
-        mdIcon: mailSharp
+        title: 'Home',
+        url: '/home',
+        iosIcon: homeOutline,
+        mdIcon: homeOutline
+      },
+      {
+        title: 'Donor Search',
+        url: '/blood_donor',
+        iosIcon: searchOutline,
+        mdIcon: searchOutline
+      },
+      {
+        title: 'Donor List',
+        url: '/donor/list',
+        iosIcon: listOutline,
+        mdIcon: listOutline
+      },
+      {
+        title: 'Donor Registration',
+        url: '/donor/registration',
+        iosIcon: logInOutline,
+        mdIcon: logInOutline
       },
       {
         title: 'Outbox',
@@ -119,7 +138,11 @@ export default defineComponent({
       trashSharp, 
       warningOutline, 
       warningSharp,
-      isSelected: (url: string) => url === route.path ? 'selected' : ''
+      homeOutline,
+      searchOutline,
+      logInOutline,
+      listOutline,
+      isSelected:(url) => url === route.path ? 'selected' : ''
     }
   }
 });
