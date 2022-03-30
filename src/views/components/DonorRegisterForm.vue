@@ -28,17 +28,25 @@
         <ion-row>
             <ion-col>
                 <ion-item>
-                    <!-- <ion-label position="floating">Last Donate</ion-label> -->
-                    <ion-button id="open-modal">Open Datetime Modal</ion-button>
-                    <ion-modal trigger="open-modal" id="ion-modal">
-                        <ion-content>
-                            <ion-datetime v-model="date"
-                            presentation="date"
-                            @ionChange="pickDate()">
-                            </ion-datetime>
-                        </ion-content>
-                    </ion-modal>
-                </ion-item>
+                    <ion-label position="floating">Date</ion-label>
+                    <ion-input v-model="date" required></ion-input>  
+                </ion-item>    
+                
+
+<!-- <ion-item>
+    <ion-button fill="clear" id="open-date-input-2">
+      <ion-icon icon="calendar" /> hsh
+    </ion-button>
+    <ion-popover trigger="open-date-input-2" :show-backdrop="false">
+      <ion-datetime v-model="date"
+        presentation="date"
+        @ionChange="pickDate()"
+      />
+    </ion-popover>
+  </ion-item> -->
+
+
+
             </ion-col>
         </ion-row>
         <ion-button expand="full" type="submit" color="primary">Save</ion-button>
@@ -55,11 +63,9 @@ import {
     IonLabel,
     IonInput,
     IonButton,
-    IonDatetime,
-    IonModal,
-    IonContent,
+    
 } from '@ionic/vue'
-import { format, parseISO } from 'date-fns'
+// import { format, parseISO } from 'date-fns'
 import db from '../../db/firebaseinit.js'
 import { collection, addDoc } from "firebase/firestore"
 
@@ -74,9 +80,6 @@ export default {
         IonLabel,
         IonInput,
         IonButton,
-        IonDatetime,
-        IonModal,
-        IonContent,
     },
     data() {
         return {
@@ -84,21 +87,11 @@ export default {
             blood_group: '',
             mobile: '',
             last_date: '',
-            date: ''
+            date: '',
                         
         }
     },
     methods: {
-        pickDate(){
-            const datetime = this.date.toString()
-            const date = datetime.substring(0, 10)
-            console.log(date)
-            this.last_date = date
-            document.getElementById('ion-modal').didDismiss()
-        },
-        formatDate(value) {
-            return format(parseISO(value), 'MMM dd yyyy');
-        },
         async saveDonor(){
             const docRef = await addDoc(collection(db, "donors"), {
                 name: this.name,
@@ -131,3 +124,10 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.hide{
+    visibility: hidden;
+}
+
+</style>

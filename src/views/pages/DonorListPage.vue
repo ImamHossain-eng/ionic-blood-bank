@@ -15,7 +15,7 @@
                         <ion-item>
                             <!-- <ion-label position="floating">Search by Blood Group</ion-label> -->
                             <!-- <ion-input v-model="search"></ion-input>   -->
-                            <ion-searchbar v-model="search" show-cancel-button="always"></ion-searchbar> 
+                            <ion-searchbar v-model="search" color="primary" show-cancel-button="focus"></ion-searchbar> 
                         </ion-item> 
                     </ion-col>
                 </ion-row>
@@ -102,8 +102,8 @@ export default {
     computed: {
         filterDonors: function() {
             return this.donors.filter((donor) => {
-                return donor.blood_group.match(this.search) || donor.name.match(this.search)
-                // return donor.blood_group.toLowercase.match(this.search)
+                // return donor.blood_group.match(this.search) || donor.name.match(this.search)
+                return donor.blood_group.toLowerCase().match(this.search.toLowerCase())
             })
         }
     }
