@@ -5,6 +5,7 @@ import HomePage from '../views/pages/HomePage.vue'
 import DonorRegisterPage from '../views/pages/DonorRegisterPage.vue'
 import DonorListPage from '../views/pages/DonorListPage.vue'
 import DonorShowPage from '../views/pages/DonorShowPage.vue'
+import DevContactPage from '../views/pages/DeveloperContactPage.vue'
 
 
 
@@ -35,8 +36,8 @@ const routes = [
     component: DonorShowPage
   },
   {
-    path: '/folder/:id',
-    component: () => import ('../views/FolderPage.vue')
+    path: '/developer/contact',
+    component: DevContactPage
   }
 ]
 

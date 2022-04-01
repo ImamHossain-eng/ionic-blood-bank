@@ -1,0 +1,6 @@
+{
+	"appId": "bloodbank.hamdarduniversity.edu.bd",
+	"appName": "HUB-Blood-Bank",
+	"webDir": "dist",
+	"bundledWebRuntime": false
+}

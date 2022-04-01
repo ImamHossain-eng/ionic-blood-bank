@@ -13,7 +13,16 @@
             <ion-col>
                 <ion-item>
                     <ion-label position="floating">Blood Group</ion-label>
-                    <ion-input v-model="blood_group" required></ion-input>    
+                    <ion-select v-model="blood_group" required>
+                        <ion-select-option value="A+">A +</ion-select-option>
+                        <ion-select-option value="A-">A -</ion-select-option>
+                        <ion-select-option value="B+">B +</ion-select-option>
+                        <ion-select-option value="B-">B -</ion-select-option>
+                        <ion-select-option value="O+">O +</ion-select-option>
+                        <ion-select-option value="O-">O -</ion-select-option>
+                        <ion-select-option value="AB+">AB +</ion-select-option>
+                        <ion-select-option value="AB-">AB -</ion-select-option>
+                    </ion-select>   
                 </ion-item>
             </ion-col>
         </ion-row>
@@ -27,26 +36,19 @@
         </ion-row>
         <ion-row>
             <ion-col>
-                <ion-item>
-                    <ion-label position="floating">Date</ion-label>
-                    <ion-input v-model="date" required></ion-input>  
-                </ion-item>    
+                <ion-button v-on:click="openDateModal()" color="primary" expand="full">Show Calendar</ion-button>
+            </ion-col>
+            <ion-col>
+                <ion-label> {{ date }} </ion-label>
+            </ion-col>
+            <ion-col>
                 
-
-<!-- <ion-item>
-    <ion-button fill="clear" id="open-date-input-2">
-      <ion-icon icon="calendar" /> hsh
-    </ion-button>
-    <ion-popover trigger="open-date-input-2" :show-backdrop="false">
-      <ion-datetime v-model="date"
-        presentation="date"
-        @ionChange="pickDate()"
-      />
-    </ion-popover>
-  </ion-item> -->
-
-
-
+                <ion-item>
+                    <ion-datetime 
+                    v-if="isOpen" v-model="last_date"
+                    @ionChange="closeDateModal()"
+                    presentation="date"></ion-datetime>
+                </ion-item>
             </ion-col>
         </ion-row>
         <ion-button expand="full" type="submit" color="primary">Save</ion-button>
@@ -63,11 +65,15 @@ import {
     IonLabel,
     IonInput,
     IonButton,
+    IonSelect,
+    IonSelectOption,
+    IonDatetime,
     
 } from '@ionic/vue'
 // import { format, parseISO } from 'date-fns'
 import db from '../../db/firebaseinit.js'
 import { collection, addDoc } from "firebase/firestore"
+import { format, parseISO } from 'date-fns';
 
 
 export default {
@@ -80,6 +86,9 @@ export default {
         IonLabel,
         IonInput,
         IonButton,
+        IonSelect,
+        IonSelectOption,
+        IonDatetime,
     },
     data() {
         return {
@@ -88,37 +97,30 @@ export default {
             mobile: '',
             last_date: '',
             date: '',
+            isOpen: false
                         
         }
     },
     methods: {
+        openDateModal(){
+            // this.isOpen = !this.isOpen
+            this.isOpen = true
+        },
+        closeDateModal(){
+            const dateFromIonDatetime = this.last_date;
+            const formattedString = format(parseISO(dateFromIonDatetime), 'MMM d, yyyy');
+            this.date = formattedString
+            this.isOpen = false
+        },
         async saveDonor(){
             const docRef = await addDoc(collection(db, "donors"), {
                 name: this.name,
                 blood_group: this.blood_group,
                 mobile: this.mobile,
-                last_date: this.last_date
+                last_date: this.date
             })
             console.log("Document written with ID: ", docRef.id);
-            this.$router.replace('/donor/list')
-            // await setDoc(doc(db, "donors", "LA"), {
-            //     name: this.name,
-            //     blood_group: this.blood_group,
-            //     mobile: this.mobile,
-            //     last_date: this.last_date
-            // });
-            // this.$router.replace('/donor/list')
-            // db.collection('donors').add({
-            //     name: this.name,
-            //     blood_group: this.blood_group,
-            //     mobile: this.mobile,
-            //     last_date: this.last_date
-            // })
-            // .then(() => {
-            //         this.$router.replace('/')
-            // })
-            // .catch(error => console.log(error))    
-           
+            this.$router.replace('/donor/list')  
         },
         
     }
