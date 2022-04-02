@@ -13,7 +13,7 @@
         <activity
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode"
             android:name="bloodbank.hamdarduniversity.edu.bd.MainActivity"
-            android:label="@string/title_activity_main"
+            android:label="HUB Blood Bank"
             android:theme="@style/AppTheme.NoActionBarLaunch"
             android:launchMode="singleTask">
 
